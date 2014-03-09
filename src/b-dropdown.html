@@ -1,0 +1,55 @@
+<element name="b-dropdown">
+    <style>
+        b-dropdown-toggle {
+            cursor: pointer;
+        }
+
+        b-dropdown-menu {
+            display: none;
+            float: left;
+            position: absolute;
+            background-color: white;
+            z-index: 1;
+        }
+
+        b-dropdown.open b-dropdown-menu {
+            display: block;
+        }
+
+        b-dropdown-item {
+            display: block;
+            padding: 5px 0;
+        }
+
+        b-dropdown-divider {
+            display: block;
+            background-color: black;
+            height: 1px;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+    </style>
+    <template>
+
+    </template>
+    <script>
+        ({
+            readyCallback: function() {
+                this.appendChild(this.template.content.cloneNode(true));
+                this.querySelector('b-dropdown-toggle').addEventListener('click', function(e) {
+                    e.target.parentNode.classList.toggle('open');
+                });
+            },
+
+            addItem: function(node) {
+                var item = document.createElement('b-dropdown-item');
+                if(typeof node === 'string') {
+                    item.innerText = node;
+                } else {
+                    item.appendChild(node);
+                }
+                this.querySelector('b-dropdown-menu').appendChild(item);
+            }
+        });
+    </script>
+</element>
