@@ -5,21 +5,22 @@
         'b-dropdown',
         {
     readyCallback: function () {
-        this.appendChild(this.template.content.cloneNode(true));
+        var root = this.createShadowRoot();
+        root.appendChild(this.template.content.cloneNode(true));
         this.querySelector('b-dropdown-toggle').addEventListener('click', function (e) {
             e.target.parentNode.classList.toggle('open');
         });
     },
     addItem: function (node) {
-        var item = document.createElement('b-dropdown-item');
+        var item = document.createElement('li');
         if (typeof node === 'string') {
             item.innerText = node;
         } else {
             item.appendChild(node);
         }
-        this.querySelector('b-dropdown-menu').appendChild(item);
+        this.querySelector('ul').appendChild(item);
     },
-    template: '    '
+    template: '        <content></content>    '
 }
     );
 }());

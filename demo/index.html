@@ -11,19 +11,19 @@
     b-dropdown.mystyle {
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     }
-    .mystyle b-dropdown-menu {
+    b-dropdown.mystyle ul {
         border: 1px solid rgba(0, 0, 0, 0.175);
         border-radius: 4px;
         padding: 5px;
         color: gray;
     }
-    .mystyle a {
+    b-dropdown.mystyle a {
         color: gray;
     }
-    .mystyle a:hover {
+    b-dropdown.mystyle a:hover {
         color: red;
     }
-    .mystyle b-dropdown-divider {
+    b-dropdown.mystyle hr {
         color: red;
         background-color: red;
     }
@@ -36,12 +36,12 @@
 
     <b-dropdown id="menu1">
         <b-dropdown-toggle>Menu 1</b-dropdown-toggle>
-        <b-dropdown-menu>
-            <b-dropdown-item>plain text</b-dropdown-item>
-            <b-dropdown-item><a href="#">link item</a></b-dropdown-item>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item><a href="#">separated link</a></b-dropdown-item>
-        </b-dropdown-menu>
+        <ul>
+            <li>plain text</li>
+            <li><a href="#">link item</a></li>
+            <hr />
+            <li><a href="#">separated link</a></li>
+        </ul>
     </b-dropdown>
 
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, temporibus voluptas fugit modi nobis placeat aliquid ab tempora obcaecati deleniti quos laboriosam soluta praesentium porro quaerat sed nesciunt. Hic, similique?</p>
@@ -50,12 +50,12 @@
 
     <b-dropdown class="mystyle">
         <b-dropdown-toggle>Menu 2</b-dropdown-toggle>
-        <b-dropdown-menu>
-            <b-dropdown-item>plain text</b-dropdown-item>
-            <b-dropdown-item><a href="#">link item</a></b-dropdown-item>
-            <b-dropdown-divider></b-dropdown-divider>
-            <b-dropdown-item><a href="#">separated link</a></b-dropdown-item>
-        </b-dropdown-menu>
+        <ul>
+            <li>plain text</li>
+            <li><a href="#">link item</a></li>
+            <hr />
+            <li><a href="#">separated link</a></li>
+        </ul>
     </b-dropdown>
 
     <script type="text/javascript">

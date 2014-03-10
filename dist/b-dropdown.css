@@ -3,24 +3,26 @@
             cursor: pointer;
         }
 
-        b-dropdown-menu {
+        b-dropdown ul {
             display: none;
             float: left;
             position: absolute;
+            list-style-type: none;
+            padding-left: 0;
             background-color: white;
             z-index: 1;
         }
 
-        b-dropdown.open b-dropdown-menu {
+        b-dropdown.open ul {
             display: block;
         }
 
-        b-dropdown-item {
+        b-dropdown li {
             display: block;
             padding: 5px 0;
         }
 
-        b-dropdown-divider {
+        b-dropdown hr {
             display: block;
             background-color: black;
             height: 1px;
