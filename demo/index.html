@@ -24,8 +24,9 @@
         color: red;
     }
     b-dropdown.mystyle hr {
-        color: red;
-        background-color: red;
+        color: red; /*for IE*/
+        background-color: red; /*for Opera, Mozilla, Chrome*/
+        /*According to this: http://www.sovavsiti.cz/css/hr.html*/
     }
     </style>
 </head>
@@ -34,8 +35,7 @@
     <h3>Without style</h3>
     <div><button id="addItem">add item</button></div>
 
-    <b-dropdown id="menu1">
-        <b-dropdown-toggle>Menu 1</b-dropdown-toggle>
+    <b-dropdown id="menu1" title="Menu 1">
         <ul>
             <li>plain text</li>
             <li><a href="#">link item</a></li>
@@ -48,8 +48,7 @@
 
     <h3>With style</h3>
 
-    <b-dropdown class="mystyle">
-        <b-dropdown-toggle>Menu 2</b-dropdown-toggle>
+    <b-dropdown class="mystyle" title="Menu 2">
         <ul>
             <li>plain text</li>
             <li><a href="#">link item</a></li>

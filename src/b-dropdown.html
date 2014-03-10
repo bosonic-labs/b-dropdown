@@ -1,6 +1,7 @@
 <element name="b-dropdown">
     <style>
-        b-dropdown-toggle {
+        /* need Shadow CSS */
+        b-dropdown .b-dropdown-toggle {
             cursor: pointer;
         }
 
@@ -10,7 +11,9 @@
             position: absolute;
             list-style-type: none;
             padding-left: 0;
+            margin-top: 0;
             background-color: white;
+            border: 1px solid black;
             z-index: 1;
         }
 
@@ -24,14 +27,12 @@
         }
 
         b-dropdown hr {
-            display: block;
-            background-color: black;
+            border: 0;
             height: 1px;
-            margin-top: 10px;
-            margin-bottom: 5px;
         }
     </style>
     <template>
+        <p class="b-dropdown-toggle"></p>
         <content></content>
     </template>
     <script>
@@ -40,9 +41,12 @@
                 var root = this.createShadowRoot();
                 root.appendChild(this.template.content.cloneNode(true));
 
-                this.querySelector('b-dropdown-toggle').addEventListener('click', function(e) {
-                    e.target.parentNode.classList.toggle('open');
-                });
+                var toggleTitle = root.querySelector('p.b-dropdown-toggle');
+                toggleTitle.textContent = this.getAttribute('title');
+
+                toggleTitle.addEventListener('click', function(e) {
+                    this.classList.toggle('open');
+                }.bind(this));
             },
 
             addItem: function(node) {

@@ -1,5 +1,6 @@
 
-        b-dropdown-toggle {
+        /* need Shadow CSS */
+        b-dropdown .b-dropdown-toggle {
             cursor: pointer;
         }
 
@@ -9,7 +10,9 @@
             position: absolute;
             list-style-type: none;
             padding-left: 0;
+            margin-top: 0;
             background-color: white;
+            border: 1px solid black;
             z-index: 1;
         }
 
@@ -23,10 +26,7 @@
         }
 
         b-dropdown hr {
-            display: block;
-            background-color: black;
+            border: 0;
             height: 1px;
-            margin-top: 10px;
-            margin-bottom: 5px;
         }
     

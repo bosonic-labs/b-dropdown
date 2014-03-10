@@ -7,9 +7,11 @@
     readyCallback: function () {
         var root = this.createShadowRoot();
         root.appendChild(this.template.content.cloneNode(true));
-        this.querySelector('b-dropdown-toggle').addEventListener('click', function (e) {
-            e.target.parentNode.classList.toggle('open');
-        });
+        var toggleTitle = root.querySelector('p.b-dropdown-toggle');
+        toggleTitle.textContent = this.getAttribute('title');
+        toggleTitle.addEventListener('click', function (e) {
+            this.classList.toggle('open');
+        }.bind(this));
     },
     addItem: function (node) {
         var item = document.createElement('li');
@@ -20,7 +22,7 @@
         }
         this.querySelector('ul').appendChild(item);
     },
-    template: '        <content></content>    '
+    template: '        <p class="b-dropdown-toggle"></p>        <content></content>    '
 }
     );
 }());
