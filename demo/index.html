@@ -4,38 +4,22 @@
     <title>Demo</title>
     <meta charset="utf-8">
     <script src="js/bosonic-polyfills.js"></script>
-    <script src="js/bosonic.js"></script>
     <script src="js/b-dropdown.js"></script>
     <link href="css/b-dropdown.css" rel="stylesheet">
-    <style>
-    b-dropdown.mystyle {
-        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    }
-    b-dropdown.mystyle ul {
-        border: 1px solid rgba(0, 0, 0, 0.175);
-        border-radius: 4px;
-        padding: 5px;
-        color: gray;
-    }
-    b-dropdown.mystyle a {
-        color: gray;
-    }
-    b-dropdown.mystyle a:hover {
-        color: red;
-    }
-    b-dropdown.mystyle hr {
-        color: red;
-        background-color: red;
-    }
-    </style>
 </head>
 <body>
-
-    <h3>Without style</h3>
-    <div><button id="addItem">add item</button></div>
-
-    <b-dropdown id="menu1">
-        <b-dropdown-toggle>Menu 1</b-dropdown-toggle>
+    <style>
+        .dropdown-toggle {
+            margin: 0;
+            padding-right: 5px;
+        }
+        .dropdown-toggle:after {
+            padding-left: 10px;
+            content:'\25BE';
+        }
+    </style>
+    <button class="dropdown-toggle">Dropdown</button>
+    <b-dropdown id="first">
         <ul>
             <li>plain text</li>
             <li><a href="#">link item</a></li>
@@ -44,12 +28,8 @@
         </ul>
     </b-dropdown>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, temporibus voluptas fugit modi nobis placeat aliquid ab tempora obcaecati deleniti quos laboriosam soluta praesentium porro quaerat sed nesciunt. Hic, similique?</p>
-
-    <h3>With style</h3>
-
-    <b-dropdown class="mystyle">
-        <b-dropdown-toggle>Menu 2</b-dropdown-toggle>
+    <button class="dropdown-toggle" data-b-dropdown-toggle="second">Dropdown</button>
+    <b-dropdown id="second">
         <ul>
             <li>plain text</li>
             <li><a href="#">link item</a></li>
@@ -59,13 +39,11 @@
     </b-dropdown>
 
     <script type="text/javascript">
-    document.querySelector('#addItem').addEventListener('click', function() {
-        var newItem = document.createElement('a');
-        newItem.href = '#';
-        newItem.innerText = 'link item added by code';
-        document.querySelector('#menu1').addItem(newItem);
-
-        document.querySelector('#menu1').addItem('text item added by code');
-    })
+        window.addEventListener('WebComponentsReady', function() {
+            document.querySelector('.dropdown-toggle').addEventListener('click', function(e) {
+                e.stopPropagation();
+                document.querySelector('#first').toggle();
+            });
+        });
     </script>
 </body>

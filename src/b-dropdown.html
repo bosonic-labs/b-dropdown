@@ -1,59 +1,87 @@
 <element name="b-dropdown">
     <style>
-        b-dropdown-toggle {
-            cursor: pointer;
+        :host {
+            position: relative;
+            display: block;
         }
-
-        b-dropdown ul {
+        ul {
             display: none;
-            float: left;
             position: absolute;
+            left: 0;
+            top: 100%;
+            float: left;
             list-style-type: none;
-            padding-left: 0;
+            padding: 5px 10px;
+            margin: 0;
             background-color: white;
-            z-index: 1;
+            z-index: 1000;
+            border: 1px solid #ccc;
         }
 
-        b-dropdown.open ul {
+        b-dropdown[open] ul {
             display: block;
         }
 
-        b-dropdown li {
+        li {
             display: block;
             padding: 5px 0;
         }
 
-        b-dropdown hr {
+        hr {
             display: block;
-            background-color: black;
+            background-color: #ddd;
             height: 1px;
             margin-top: 10px;
             margin-bottom: 5px;
         }
     </style>
-    <template>
-        <content></content>
-    </template>
     <script>
-        ({
-            readyCallback: function() {
-                var root = this.createShadowRoot();
-                root.appendChild(this.template.content.cloneNode(true));
+        function isChildOf(node, possibleParent) {
+            var isChildren = false;
+            while (node && !isChildren) {
+                isChildren = node === possibleParent;
+                node = node.parentNode;
+            }
+            return isChildren;
+        }
 
-                this.querySelector('b-dropdown-toggle').addEventListener('click', function(e) {
-                    e.target.parentNode.classList.toggle('open');
-                });
+        ({
+            get open() {
+                return this.hasAttribute('open');
             },
 
-            addItem: function(node) {
-                var item = document.createElement('li');
-                if(typeof node === 'string') {
-                    item.innerText = node;
-                } else {
-                    item.appendChild(node);
+            createdCallback: function() {
+                this.clickOutsideListener = this.clickOutside.bind(this);
+                if (this.id) {
+                    var toggle = document.querySelector("[data-b-dropdown-toggle='" + this.id + "']");
+                    if (toggle) {
+                        var that = this;
+                        toggle.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            that.toggle();
+                        }, false)
+                    }
                 }
+            },
 
-                this.querySelector('ul').appendChild(item);
+            toggle: function() {
+                this.open ? this.hide() : this.show();
+            },
+
+            show: function() {
+                this.setAttribute('open', '');
+                document.addEventListener('click', this.clickOutsideListener);
+            },
+
+            hide: function() {
+                this.removeAttribute('open');
+                document.removeEventListener('click', this.clickOutsideListener);
+            },
+
+            clickOutside: function(e) {
+                if (!isChildOf(e.target, this)) {
+                    this.hide();
+                }
             }
         });
     </script>
