@@ -1,15 +1,25 @@
 {
   "name": "b-dropdown",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "b-dropdown ========",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bosonic/b-dropdown.git"
+  },
+  "author": "Raphaël Rougeron <goldoraf@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bosonic/b-dropdown/issues"
+  },
   "devDependencies": {
-    "bosonic-test-tools": "*"
+    "bosonic-test-tools": "*",
+    "grunt-bosonic": ">=0.4.0"
   },
   "dependencies": {
-    "bosonic": "*"
+    "bosonic": ">=0.4.0"
   }
 }
