@@ -17,6 +17,23 @@
             createdCallback: {
                 enumerable: true,
                 value: function () {
+                    this.initialized = false;
+                    if (this.isUnderDocument()) {
+                        this.init();
+                    }
+                }
+            },
+            attachedCallback: {
+                enumerable: true,
+                value: function () {
+                    if (!this.initialized) {
+                        this.init();
+                    }
+                }
+            },
+            init: {
+                enumerable: true,
+                value: function () {
                     this.clickOutsideListener = this.clickOutside.bind(this);
                     if (this.id) {
                         var toggle = document.querySelector('[data-b-dropdown-toggle=\'' + this.id + '\']');
@@ -28,6 +45,7 @@
                             }, false);
                         }
                     }
+                    this.initialized = true;
                 }
             },
             toggle: {
@@ -56,6 +74,12 @@
                     if (!isChildOf(e.target, this)) {
                         this.hide();
                     }
+                }
+            },
+            isUnderDocument: {
+                enumerable: true,
+                value: function (domElement) {
+                    return domElement !== undefined && (domElement === document || isUnderDocument(domElement.parentNode));
                 }
             }
         });
