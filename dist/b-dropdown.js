@@ -40,7 +40,6 @@
                         if (toggle) {
                             var that = this;
                             toggle.addEventListener('click', function (e) {
-                                e.stopPropagation();
                                 that.toggle();
                             }, false);
                         }
@@ -58,14 +57,14 @@
                 enumerable: true,
                 value: function () {
                     this.setAttribute('open', '');
-                    document.addEventListener('click', this.clickOutsideListener);
+                    document.addEventListener('click', this.clickOutsideListener, true);
                 }
             },
             hide: {
                 enumerable: true,
                 value: function () {
                     this.removeAttribute('open');
-                    document.removeEventListener('click', this.clickOutsideListener);
+                    document.removeEventListener('click', this.clickOutsideListener, true);
                 }
             },
             clickOutside: {
